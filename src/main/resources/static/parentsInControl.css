@@ -1,0 +1,134 @@
+html{
+  height:100%;
+  overflow-y: hidden;
+}
+
+body{
+  background-image: url('./images/happyParents.jpg');
+  margin:0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height:100%;
+}
+
+h1{
+  margin-top: 10%;
+  text-align: center;
+}
+
+.btn {
+    margin-right: 0.5rem !important
+}
+
+.btn {
+    font-size: 2rem;
+    line-height: 1;
+    font-weight:bold;
+    padding: .7rem 1.5rem;
+    border-radius: 0.1275rem
+}
+
+.container {
+    margin-top: 10%;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+span{
+  visibility: visible;
+}
+
+form{
+  text-align:-webkit-center;
+}
+
+fieldset{
+  text-align: inherit;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+tr{
+  font-weight:bold;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.myTable{
+  width: 700px;
+  border-collapse: separate;
+  border-spacing: 20px 1rem;
+}
+
+/* vale #begin.animated kai etsi den 3ekina me to animation sthn arxh */
+#begin{
+  animation: fadeOut 3s ease;
+  -moz-animation: fadeOut 3s ease; /* Firefox */
+  -webkit-animation: fadeOut 3s ease; /* Safari and Chrome */
+}
+
+#menu.animated{
+  animation: fadeIn 3s ease;
+  -moz-animation: fadeIn 3s ease; /* Firefox */
+  -webkit-animation: fadeIn 3s ease; /* Safari and Chrome */
+}
+
+.card{
+  display:none;
+  margin-top:10%;
+  width:1000px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #9EC8D7;
+}
+
+#register{
+  display: none;
+  text-align: -moz-center;
+  margin-top: 8%;
+}
+
+.buttons{
+  display: initial;
+}
+
+@keyframes fadeIn {
+  0% {
+  opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn { /* Safari and Chrome */
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    -webkit-transform: translateY(-100%);
+    visibility: visible;
+  }
+  100% {
+    visibility: hidden;
+    -webkit-transform: translateY(0);
+  }
+}
+
+@-webkit-keyframes fadeOut { /* Safari and Chrome */
+  0% {
+      -webkit-transform: translateY(-100%);
+      visibility: visible;
+    }
+    100% {
+      -webkit-transform: translateY(0);
+      visibility: hidden;
+    }
+}
