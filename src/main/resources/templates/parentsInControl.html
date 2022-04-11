@@ -28,54 +28,9 @@
     <div class="card-body">
       <h5 class="card-title">About us</h5>
       <p class="card-text">ParentalControllers is a worldwide leader in parental controlling tools. We’re focused on protecting young children, from unappropriate behavior and violence. Our solutions adapt to our customers’ needs and empower them to confidently feel safe about their childrens' future. Begin this safe journey by registering:</p>
-      <a onclick="showRegister()" class="btn btn-primary">Register</a>
+      <a th:href="@{/register}" class="btn btn-primary">Register</a>
     </div>
   </div>
-
-<span id="checkIfUsernameAlreadyExists" th:text="${user.checkIfUserAlreadyExists}"></span>
-  <div id="register">
-    <h1 style="margin-top:0px;">Register</h1>
-    <form action="#" th:action="@{/}" th:object="${user}" method="post">
-    <fieldset>
-      <table class="myTable">
-        <tr>
-          <td><label for="firstname">Username:</label></td>
-          <td><input type="text" id="username" name="username" placeholder="Your Username" th:field="*{username}" on></td>
-        </tr>
-        <tr>
-          <td><label for="firstname">First Name:</label></td>
-          <td><input type="text" id="firstname" name="firstname" placeholder="Your First Name" th:field="*{firstname}"></td>
-        </tr>
-        <tr>
-        <td><label for="lastname">Last Name:</label></td>
-        <td><input type="text" id="lastname" name="lastname" placeholder="Your Last Name" th:field="*{lastname}"></td>
-        </tr>
-        <tr>
-          <td><label for="email">Email:</label></td>
-          <td><input type="email" id="email" name="email" placeholder="Your Email" th:field="*{email}"></td>
-        </tr>
-        <tr>
-          <td><label for="password">Password:</label></td>
-          <td><input type="password" id="password" name="password" placeholder="Your Password" minlength="8" th:field="*{password}"></td>
-        </tr>
-        <tr>
-          <td><label for="verifyPassword">Verify Password:</label></td>
-          <td><input type="password" id="verifyPassword" name="verifyPassword" placeholder="Your Password" minlength="8"></td>
-        </tr>
-      </table>
-    </fieldset>
-
-    <fieldset style="border: none" class="buttons">
-    <table>
-      <tr>
-        <td><input type="submit" value="Register" style="width:100px;margin-top:20px;" onclick="return validateForm();"></td>
-        <td><input type="reset" value="Cancel"  style="width:100px;margin-top:20px;margin-left:15px;"></td>
-      </tr>
-    </table>
-      </fieldset>
-    </form>
-</div>
-
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

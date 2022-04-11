@@ -1,29 +1,38 @@
 package com.parental.control;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.server.ResponseStatusException;
 
+import javax.sql.DataSource;
 import java.sql.*;
 
 @Controller
 public class parentController {
 
     @GetMapping("/")
-    public String sendForm(Model model){
+    public String sendForm(){
         System.out.println("Going to Home Page");
-        User user=new User();
-        model.addAttribute("user",user);
         return "parentsInControl.html";
     }
 
-    @PostMapping("/")
-    public String processForm(@ModelAttribute("user") User user){
+    @GetMapping("/register")
+    public String processForm(Model model){
+        model.addAttribute("user",new User());
+        return "register.html";
+    }
+
+    @PostMapping("/process_register")
+    public String processRegister(User user)
+    {
         System.out.println(user.toString());
-        createTableIfNotExists();
-        registerUser(user);
+     //   createTableIfNotExists();
+    //    registerUser(user);
         return "parentsInControl.html";
     }
 
@@ -55,7 +64,7 @@ public class parentController {
                 pst.execute();
             }
             connection.commit();
-        }catch (Exception exception){
+        }catch (SQLException exception){
             exception.printStackTrace();
         }
     }
