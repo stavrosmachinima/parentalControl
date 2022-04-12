@@ -1,15 +1,10 @@
 package com.parental.control;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.server.ResponseStatusException;
-
-import javax.sql.DataSource;
 import java.sql.*;
 
 @Controller
@@ -30,29 +25,66 @@ public class parentController {
     @PostMapping("/process_register")
     public String processRegister(User user)
     {
+        BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
+        String encodedPassword=passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
         System.out.println(user.toString());
-     //   createTableIfNotExists();
-    //    registerUser(user);
-        return "parentsInControl.html";
+        createTableIfNotExists();
+        registerUser(user);
+        if (user.isCheckIfUserAlreadyExists()||user.isCheckIfEmailAlreadyExists())
+            return "register.html";
+        return "store.html";
+    }
+
+    private static boolean checkIfUsernameExists(User user,Connection connection){
+        String checkUser="SELECT * FROM USER WHERE USERNAME=?";
+        try (PreparedStatement pst=connection.prepareStatement(checkUser)){
+            pst.setString(1,user.getUsername());
+            try(ResultSet rs=pst.executeQuery()){
+                if (!rs.isBeforeFirst())
+                {
+                    System.out.println("No data");
+                    return false;
+                }
+                    System.out.println("User is already there");
+                    user.setCheckIfUserAlreadyExists(true);
+                    return true;
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+    private static boolean checkIfEmailExists(User user,Connection connection){
+        String checkUser="SELECT * FROM USER WHERE EMAIL=?";
+        try (PreparedStatement pst=connection.prepareStatement(checkUser)){
+            pst.setString(1,user.getEmail());
+            try(ResultSet rs=pst.executeQuery()){
+                if (!rs.isBeforeFirst())
+                {
+                    System.out.println("No data");
+                    return false;
+                }
+                System.out.println("Email is already there");
+                user.setCheckIfEmailAlreadyExists(true);
+                return true;
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return true;
     }
 
     private static void registerUser(User user){
         try(Connection connection=connect()){
             connection.setAutoCommit(false);
-            String checkUser="SELECT * FROM USER WHERE USERNAME=?";
-            try (PreparedStatement pst=connection.prepareStatement(checkUser)){
-                pst.setString(1,user.getUsername());
-                try(ResultSet rs=pst.executeQuery()){
-                    if (!rs.isBeforeFirst())
-                        System.out.println("No data");
-                    else
-                    {
-                        System.out.println("User is already there");
-                        user.setCheckIfUserAlreadyExists(true);
-                        return;
-                    }
-                }
-            }
+            boolean usernameExistsAlready=checkIfUsernameExists(user,connection);
+            boolean emailExistsAlready=checkIfEmailExists(user,connection);
+            if (usernameExistsAlready||emailExistsAlready)
+                return;
             String query="INSERT INTO USER (username,firstname,lastname,email,password)" +
                     " values(?,?,?,?,?)";
             try (PreparedStatement pst=connection.prepareStatement(query)){

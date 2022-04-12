@@ -7,6 +7,15 @@ public class User {
     private String lastname;
     private String email;
     private String password;
+    private boolean checkIfEmailAlreadyExists;
+
+    public boolean isCheckIfEmailAlreadyExists() {
+        return checkIfEmailAlreadyExists;
+    }
+
+    public void setCheckIfEmailAlreadyExists(boolean checkIfEmailAlreadyExists) {
+        this.checkIfEmailAlreadyExists = checkIfEmailAlreadyExists;
+    }
 
     public boolean isCheckIfUserAlreadyExists() {
         return checkIfUserAlreadyExists;

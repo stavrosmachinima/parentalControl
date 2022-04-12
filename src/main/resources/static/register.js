@@ -1,34 +1,36 @@
-/*
-var doneTypingInterval=5000;
-var typingTimer;
-$('#username').keyup(function(){
-    clearTimeout(typingTimer);
-    if ($('#username').val()){
-        typingTimer=setTimeout(doneTyping,doneTypingInterval);
-    }
-});
-
-function doneTyping(){
-  if (document.getElementById('checkIfUsernameAlreadyExists').innerHTML=='true')
-    alert('Please define another Username');
+// closes button with transition
+var close = document.getElementsByClassName("closebtn");
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function(){
+    var div = this.parentElement;
+    div.style.opacity = "0";
+    setTimeout(function(){ div.style.display = "none"; }, 600);
+  }
 }
-*/
 
 function showMessage(msg){
   document.getElementById('alertMessage').innerHTML=msg;
-  document.getElementById('alert').style.display="block";
+  var alertBlock=document.getElementById('alert').style;
+  alertBlock.display="block";
+  alertBlock.opacity="1";
 }
-/*
+
 $( document ).ready(function() {
-
+  let msg;
+  let error=false;
   if (document.getElementById('checkIfUsernameAlreadyExists').innerHTML=='true')
-    {
-      window.location.href='./register';
-      document.getElementById('alert').innerHTML='Username is already defined';
-    }
-
+  {
+      error=true;
+      msg='<strong>Error!</strong> An account with the same username is already defined!<br/>';
+  }
+  if (document.getElementById('checkIfEmailAlreadyExists').innerHTML=='true') {
+    error=true;
+    msg+='<strong>Error!</strong> An account with the same email is already defined!';
+  }
+  if (error)
+    showMessage(msg);
 });
-*/
+
 function validateForm() {
     var alertmsg1 = "You must fill the following required fields";
     var alertmsg2 = "";
@@ -98,20 +100,15 @@ var password2 =document.getElementById('verifyPassword').value;
         return false;
       }else if (password1 != password2)
       {
-        showMessage("<strong>Danger!</strong>Your passwords don't much!");
-        alert('kappa');
+        showMessage("<strong>Error!</strong> Your passwords don't much!");
         alertmsg2 = "";
         return false;
       }
        else if (!passwordStrong)
       {
-        showMessage("<strong>Danger!</strong>Your password was very weak!");
-        alert('kappa');
+        showMessage("<strong>Error!</strong> Your password is very weak!");
         alertmsg2 = "";
         return false;
-      }else {
-        alert('kkookko');
+      }else
         return true;
-      }
-      alert('kappa');
 }

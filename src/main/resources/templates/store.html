@@ -7,31 +7,17 @@
   <meta name="HandheldFriendly" content="true">
   <meta charset="utf-8">
    <meta name="description" content="Everything about parental control">
-    <title>Parents in Control</title>
+    <title>Store</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
     <link rel="stylesheet" type="text/css" href="./parentsInControl.css" media="screen"/>
-    <script src="./parentsInControl.js" defer></script>
+    <script src="./store.js" defer></script>
 </head>
 <body>
-  <div id="begin">
-    <h1>Welcome to the future of Parental Control.</h1>
-    <div class="page-content page-container" id="page-content">
-        <div class="padding">
-            <div class="row container d-flex justify-content-center"> <button type="button" id="animatebutton" class="btn btn-warning btn-icon-text animatebutton"> <i class="fa fa-check btn-icon-prepend"></i>Click here! </button> </div>
-        </div>
-    </div>
-  </div>
-
-  <div class="card" id="menu">
-    <h5 class="card-header">ParentalControllers</h5>
-    <div class="card-body">
-      <h5 class="card-title">About us</h5>
-      <p class="card-text">ParentalControllers is a worldwide leader in parental controlling tools. We’re focused on protecting young children, from unappropriate behavior and violence. Our solutions adapt to our customers’ needs and empower them to confidently feel safe about their childrens' future. Begin this safe journey by registering:</p>
-      <a th:href="@{/register}" class="btn btn-primary">Register</a>
-      <a th:href="@{/login}" class="btn btn-primary">Login</a>
-    </div>
-  </div>
+  <div id="alert">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+  <span id="alertMessage">This is an alert box.</span>
+</div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
