@@ -22,6 +22,25 @@ public class parentController {
         return "register.html";
     }
 
+    @GetMapping("/login")
+    public String processLogin(Model model)
+    {
+        model.addAttribute("user",new User());
+        return "login.html";
+    }
+
+    @PostMapping("/process_login")
+    public String processLogin(User user)
+    {
+        System.out.println(user.toString());
+        createTableIfNotExists();
+        login(user);
+        System.out.println(user.toString());
+        if (user.isCheckIfWrongUserPasswordCombination())
+            return "login.html";
+        return "store.html";
+    }
+
     @PostMapping("/process_register")
     public String processRegister(User user)
     {
@@ -76,6 +95,40 @@ public class parentController {
             e.printStackTrace();
         }
         return true;
+    }
+
+    private static void login(User user)
+    {
+        try (Connection connection=connect()){
+            connection.setAutoCommit(false);
+            String query="SELECT * FROM USER WHERE USERNAME=?";
+            try (PreparedStatement pst=connection.prepareStatement(query))
+            {
+                pst.setString(1,user.getUsername());
+                try (ResultSet rs=pst.executeQuery())
+                {
+                    if (!rs.isBeforeFirst())
+                    {
+                        System.out.println("No data");
+                        user.setCheckIfWrongUserPasswordCombination(true);
+                        return;
+                    }
+                    BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
+                    while (rs.next())
+                    {
+                        if (!passwordEncoder.matches(user.getPassword(),rs.getString(5)))
+                        {
+                            System.out.println("Wrong password");
+                            user.setCheckIfWrongUserPasswordCombination(true);
+                        }
+                    }
+                }
+            }
+        }
+        catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        }
     }
 
     private static void registerUser(User user){

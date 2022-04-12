@@ -16,19 +16,32 @@ function showMessage(msg){
 }
 
 $( document ).ready(function() {
-  let msg;
+  let msg='';
   let error=false;
-  if (document.getElementById('checkIfUsernameAlreadyExists').innerHTML=='true')
+  console.log(document.getElementById('checkIfWrongUserPasswordCombination'));
+  var flag=document.getElementById('checkIfWrongUserPasswordCombination');
+  if (flag)
   {
+    if (flag.innerHTML=='true')
+    {
+        msg='<strong>Error!</strong> Wrong User-Password combination!<br/>';
+        showMessage(msg);
+    }
+  }
+  else{
+    if (document.getElementById('checkIfUsernameAlreadyExists').innerHTML=='true')
+    {
+        error=true;
+        msg='<strong>Error!</strong> An account with the same username is already defined!<br/>';
+    }
+    if (document.getElementById('checkIfEmailAlreadyExists').innerHTML=='true') {
       error=true;
-      msg='<strong>Error!</strong> An account with the same username is already defined!<br/>';
+      msg+='<strong>Error!</strong> An account with the same email is already defined!';
+    }
+    if (error)
+      showMessage(msg);
   }
-  if (document.getElementById('checkIfEmailAlreadyExists').innerHTML=='true') {
-    error=true;
-    msg+='<strong>Error!</strong> An account with the same email is already defined!';
-  }
-  if (error)
-    showMessage(msg);
+
 });
 
 function validateForm() {

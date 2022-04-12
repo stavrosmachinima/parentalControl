@@ -1,5 +1,9 @@
 $( document ).ready(function() {
-  showMessage('<strong>Success!</strong> You have been registered sucessfully!');
+  console.log(document.getElementById('checkIfWrongUserPasswordCombination'));
+  if (document.getElementById('checkIfWrongUserPasswordCombination').innerHTML=='true')
+    showMessage('<strong>Success!</strong> You have been registered sucessfully!');
+  else
+    showMessage('<strong>Success!</strong> You have signed in sucessfully!');
 });
 
 var close = document.getElementsByClassName("closebtn");

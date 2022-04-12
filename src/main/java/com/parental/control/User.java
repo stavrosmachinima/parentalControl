@@ -8,6 +8,15 @@ public class User {
     private String email;
     private String password;
     private boolean checkIfEmailAlreadyExists;
+    private boolean checkIfWrongUserPasswordCombination;
+
+    public boolean isCheckIfWrongUserPasswordCombination() {
+        return checkIfWrongUserPasswordCombination;
+    }
+
+    public void setCheckIfWrongUserPasswordCombination(boolean checkIfWrongUserPasswordCombination) {
+        this.checkIfWrongUserPasswordCombination = checkIfWrongUserPasswordCombination;
+    }
 
     public boolean isCheckIfEmailAlreadyExists() {
         return checkIfEmailAlreadyExists;
