@@ -1,6 +1,6 @@
 $( document ).ready(function() {
-  console.log(document.getElementById('checkIfWrongUserPasswordCombination'));
-  if (document.getElementById('checkIfWrongUserPasswordCombination').innerHTML=='true')
+  console.log(document.getElementById('firstname').innerHTML);
+  if (document.getElementById('firstname').innerHTML!='')
     showMessage('<strong>Success!</strong> You have been registered sucessfully!');
   else
     showMessage('<strong>Success!</strong> You have signed in sucessfully!');
