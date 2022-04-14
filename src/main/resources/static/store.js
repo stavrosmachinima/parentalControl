@@ -4,6 +4,10 @@ $( document ).ready(function() {
     showMessage('<strong>Success!</strong> You have been registered sucessfully!');
   else
     showMessage('<strong>Success!</strong> You have signed in sucessfully!');
+
+    setTimeout(function(){
+       $('.closebtn').click();
+    }, 5000);
 });
 
 var close = document.getElementsByClassName("closebtn");

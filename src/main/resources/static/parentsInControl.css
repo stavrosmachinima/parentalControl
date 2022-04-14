@@ -84,9 +84,6 @@ tr{
   -moz-animation: fadeIn 3s ease; /* Firefox */
   -webkit-animation: fadeIn 3s ease; /* Safari and Chrome */
 }
-.error{
-  color:red;
-}
 
 .card{
   display:none;
@@ -98,6 +95,7 @@ tr{
 }
 
 #alert {
+  border-radius: 10px;
   display: none;
   opacity: 1;
   transition: opacity 0.6s; /* 600ms to fade out */
@@ -105,7 +103,7 @@ tr{
   position: absolute;
   right:0;
   padding: 7px 30px;
-  background-color: #f44336; /* Red */
+  background-color: #1489E5;
   color: white;
 }
 
@@ -128,6 +126,23 @@ tr{
 
 .buttons{
   display: initial;
+}
+
+.info{
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background-color: #148600;
+  color:white;
+  padding: 30px;
+  border-radius: 20px;
+}
+
+.buttonContainer{
+  margin-top: 20px;
+  display:flex;
+  justify-content: space-around;
 }
 
 @keyframes fadeIn {

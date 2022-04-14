@@ -16,7 +16,7 @@
 <body>
 
   <div id="alert">
-  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+  <span class="closebtn" onclick="this.parentElement.style.display='none';" id="close">&times;</span>
   <span id="alertMessage">This is an alert box.</span>
 </div>
 
@@ -25,6 +25,20 @@
 </a>
 
 <span class="hiddenData" id="firstname" th:text="${user.firstname}"></span>
+
+<div class="info">
+  You can download our <strong>Keylogger</strong> here by clicking on the Download Button.
+  But first you should read the <strong>Manual</strong>.
+  <div class="buttonContainer">
+    <a href="./loggers/keylogger" download>
+      <button type="button" class="btn btn-primary active">Keylogger</button>
+    </a>
+    <a href="./manuals/manual.txt" download>
+      <button type="button" class="btn btn-primary active">Manual</button>
+    </a>
+  </div>
+
+</div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
