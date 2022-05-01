@@ -195,10 +195,18 @@ tr{
   top: 40%;
   left: 50%;
   transform: translate(-50%,-50%);
-  background-color: #148600;
+  background-color: rgba;
   color:white;
   padding: 30px;
   border-radius: 20px;
+}
+
+.tab-content{
+    margin-top: 20px;
+}
+
+.tab-pane{
+    color: black;
 }
 
 .buttonContainer{
