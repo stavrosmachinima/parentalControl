@@ -31,13 +31,16 @@
     <fieldset>
       <table class="myTable">
         <tr>
-          <td><label for="firstname">Username:</label></td>
+          <td><label for="username">Username:</label></td>
           <td><input type="text" id="username" name="username" placeholder="Your Username" th:field="*{username}" required></td>
         </tr>
         <tr>
           <td><label for="password">Password:</label></td>
           <td><input type="password" id="password" name="password" placeholder="Your Password" minlength="8" th:field="*{password}" required></td>
         </tr>
+        <tr><a href="./register">
+          New User?
+        </a></tr>
       </table>
     </fieldset>
 

@@ -10,6 +10,16 @@ public class User {
     private boolean checkIfEmailAlreadyExists;
     private boolean checkIfWrongUserPasswordCombination;
 
+    private String chosenPlan;
+
+    public String getChosenPlan() {
+        return chosenPlan;
+    }
+
+    public void setChosenPlan(String chosenPlan) {
+        this.chosenPlan = chosenPlan;
+    }
+
     public boolean isCheckIfWrongUserPasswordCombination() {
         return checkIfWrongUserPasswordCombination;
     }

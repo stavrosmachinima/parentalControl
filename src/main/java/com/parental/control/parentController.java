@@ -52,7 +52,19 @@ public class parentController {
         registerUser(user);
         if (user.isCheckIfUserAlreadyExists()||user.isCheckIfEmailAlreadyExists())
             return "register.html";
+        return "subscribe";
+    }
+
+    @PostMapping("/process_subscription")
+    public String processSub(User user){
+        System.out.println(user.toString());
         return "store.html";
+    }
+
+    @GetMapping("/subscribe")
+    public String subscriptionService()
+    {
+        return "subscription.html";
     }
 
     private static boolean checkIfUsernameExists(User user,Connection connection){

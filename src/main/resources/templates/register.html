@@ -32,7 +32,7 @@
     <fieldset>
       <table class="myTable">
         <tr>
-          <td><label for="firstname">Username:</label></td>
+          <td><label for="username">Username:</label></td>
           <td><input type="text" id="username" name="username" placeholder="Your Username" th:field="*{username}"></td>
         </tr>
         <tr>
@@ -55,6 +55,9 @@
           <td><label for="verifyPassword">Verify Password:</label></td>
           <td><input type="password" id="verifyPassword" name="verifyPassword" placeholder="Your Password" minlength="8"></td>
         </tr>
+        <tr><a href="./login">
+            Already a user?
+        </a></tr>
       </table>
     </fieldset>
 

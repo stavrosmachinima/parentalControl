@@ -195,7 +195,7 @@ tr{
   top: 40%;
   left: 50%;
   transform: translate(-50%,-50%);
-  background-color: rgba;
+  background-color: wheat;
   color:white;
   padding: 30px;
   border-radius: 20px;
@@ -213,6 +213,26 @@ tr{
   margin-top: 20px;
   display:flex;
   justify-content: space-around;
+}
+
+.centerMe{
+    width:100%;
+    display: flex;
+    justify-content: center;
+}
+.subscribe{
+    display: block;
+    background-color: bisque;
+    opacity: 0.9;
+}
+
+.subscribeTable{
+    width: 100%;
+    text-align: center;
+}
+
+#subscribeForm{
+    text-align: center;
 }
 
 @keyframes fadeIn {
