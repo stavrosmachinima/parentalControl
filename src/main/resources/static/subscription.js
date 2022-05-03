@@ -1,12 +1,38 @@
+$( document ).ready(function() {
+    showMessage('<strong>Success!</strong> You have been registered sucessfully!');
+
+    setTimeout(function(){
+       $('.closebtn').click();
+    }, 5000);
+});
+
+var close = document.getElementsByClassName("closebtn");
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function(){
+    var div = this.parentElement;
+    div.style.opacity = "0";
+    setTimeout(function(){ div.style.display = "none"; }, 600);
+  }
+}
+
+function showMessage(msg){
+  document.getElementById('alertMessage').innerHTML=msg;
+  var alertBlock=document.getElementById('alert').style;
+  alertBlock.display="block";
+  alertBlock.backgroundColor="#27DDE8";
+}
+
 $(function(){
     $("#monthly").click(function(){
         $(this).attr("disabled", "disabled");
         $("#yearly").removeAttr("disabled");
+        $("#addPlan").val("10€/month");
     });
 
     $("#yearly").click(function () {
         $(this).attr("disabled", "disabled");
         $("#monthly").removeAttr("disabled");
+        $("#addPlan").val("100€/year");
     });
 });
 

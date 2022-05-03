@@ -4,15 +4,19 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import java.sql.*;
 
 @Controller
 public class parentController {
+    User userGlob;
 
     @GetMapping("/")
     public String sendForm(){
-        System.out.println("Going to Home Page");
         return "parentsInControl.html";
     }
 
@@ -42,29 +46,35 @@ public class parentController {
     }
 
     @PostMapping("/process_register")
-    public String processRegister(User user)
+    public String processRegister(Model model, final RedirectAttributes redirectAttributes, User user)
     {
         BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
         String encodedPassword=passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
         System.out.println(user.toString());
+        model.addAttribute("user",user);
+        redirectAttributes.addFlashAttribute("user",model);
         createTableIfNotExists();
         registerUser(user);
         if (user.isCheckIfUserAlreadyExists()||user.isCheckIfEmailAlreadyExists())
             return "register.html";
-        return "subscribe";
+        return "redirect:subscribe";
+    }
+
+    @GetMapping("/subscribe")
+    public ModelAndView subscriptionPage(@ModelAttribute("user") Model model){
+        ModelAndView mav=new ModelAndView("subscription.html");
+        userGlob= (User) model.getAttribute("user");
+        mav.addObject("user",userGlob);
+        return mav;
     }
 
     @PostMapping("/process_subscription")
     public String processSub(User user){
-        System.out.println(user.toString());
+        System.out.println("Plan:"+user.getPlan());
+        userGlob.setPlan(user.getPlan());
+        System.out.println(userGlob.toString());
         return "store.html";
-    }
-
-    @GetMapping("/subscribe")
-    public String subscriptionService()
-    {
-        return "subscription.html";
     }
 
     private static boolean checkIfUsernameExists(User user,Connection connection){
@@ -73,13 +83,10 @@ public class parentController {
             pst.setString(1,user.getUsername());
             try(ResultSet rs=pst.executeQuery()){
                 if (!rs.isBeforeFirst())
-                {
-                    System.out.println("No data");
                     return false;
-                }
-                    System.out.println("User is already there");
-                    user.setCheckIfUserAlreadyExists(true);
-                    return true;
+                System.out.println("User is already there");
+                user.setCheckIfUserAlreadyExists(true);
+                return true;
             }
         }
         catch (SQLException e){
@@ -94,10 +101,7 @@ public class parentController {
             pst.setString(1,user.getEmail());
             try(ResultSet rs=pst.executeQuery()){
                 if (!rs.isBeforeFirst())
-                {
-                    System.out.println("No data");
                     return false;
-                }
                 System.out.println("Email is already there");
                 user.setCheckIfEmailAlreadyExists(true);
                 return true;
@@ -185,7 +189,6 @@ public class parentController {
         String url="jdbc:sqlite:src/main/resources/DB/parentalUser.db";
         Connection connection=null;
         try{
-            System.out.println("Tries to connect");
             connection= DriverManager.getConnection(url);
         }catch (SQLException ex){
             ex.printStackTrace();

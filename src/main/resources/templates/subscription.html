@@ -15,6 +15,11 @@
 </head>
 <body>
 
+<div id="alert">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';" id="close">&times;</span>
+    <span id="alertMessage">This is an alert box.</span>
+</div>
+
 <a href="./">
     <img id="home" src="./images/home.png" alt="Home Button">
 </a>
@@ -23,19 +28,20 @@
     <div class="card subscribe">
         <h1 style="margin-top:0px;">Subscribe to use our Services</h1>
         <form action="#" th:action="@{/process_subscription}" th:object="${user}" method="post" id="subscribeForm">
+            <input id="addPlan" th:field="*{plan}"> </input>
             <fieldset>
                 <table class="myTable subscribeTable">
                     <tr>
                         <!--An input with a type="submit" or type="button" does not need a label.
                         The value attribute acts as the accessible label text instead. -->
                         <td><label>Choose Plan:</label></td>
-                        <td><input type="button" id="monthly" name="plan" value="10&euro;/month" th:field="*{password}">
+                        <td><input type="button" id="monthly" name="plan" value="10&euro;/month">
                             <input type="button" id="yearly" name="plan" value="100&euro;/year">
                         </td>
                     </tr>
                     <tr>
                         <td><label for="fullname">Fullname:</label></td>
-                        <td><input type="text" id="fullname" name="fullname" placeholder="Your Fullname" pattern="[A-Za-z]*" title="George Papadopoulos"required></td>
+                        <td><input type="text" id="fullname" name="fullname" placeholder="Your Fullname" pattern="[A-Za-z]*"  title="George Papadopoulos" required></td>
                     </tr>
                     <tr>
                         <td><label for="ccn">Credit Card Number:</label></td>

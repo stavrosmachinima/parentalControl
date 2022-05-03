@@ -10,14 +10,14 @@ public class User {
     private boolean checkIfEmailAlreadyExists;
     private boolean checkIfWrongUserPasswordCombination;
 
-    private String chosenPlan;
+    private String plan;
 
-    public String getChosenPlan() {
-        return chosenPlan;
+    public String getPlan() {
+        return plan;
     }
 
-    public void setChosenPlan(String chosenPlan) {
-        this.chosenPlan = chosenPlan;
+    public void setPlan(String plan) {
+        this.plan = plan;
     }
 
     public boolean isCheckIfWrongUserPasswordCombination() {
@@ -86,6 +86,6 @@ public class User {
 
     @Override
     public String toString(){
-        return "username: "+this.username+", firstname: "+this.firstname+", lastname: "+this.lastname+", email: "+this.email+", password: "+this.password;
+        return "username: "+this.username+", firstname: "+this.firstname+", lastname: "+this.lastname+", email: "+this.email+", password: "+this.password+", plan: "+this.plan;
     }
 }
