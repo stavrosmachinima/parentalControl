@@ -15,6 +15,12 @@ for (i = 0; i < close.length; i++) {
   }
 }
 
+function expiredCard(){
+let date=$('#expiration').val();
+showMessage(date);
+return false;
+};
+
 function showMessage(msg){
   document.getElementById('alertMessage').innerHTML=msg;
   var alertBlock=document.getElementById('alert').style;
@@ -52,7 +58,6 @@ function insertSlash(e){
     if (expirDate.length==2)
         document.getElementById('expiration').value=expirDate+'/';
 }
-
 
 //makes space every 4 chars
 function makeSpace(e){

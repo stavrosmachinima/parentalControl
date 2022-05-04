@@ -28,7 +28,7 @@
     <div class="card subscribe">
         <h1 style="margin-top:0px;">Subscribe to use our Services</h1>
         <form action="#" th:action="@{/process_subscription}" th:object="${user}" method="post" id="subscribeForm">
-            <input id="addPlan" th:field="*{plan}"> </input>
+            <input class="hiddenData" id="addPlan" th:field="*{plan}"> </input>
             <fieldset>
                 <table class="myTable subscribeTable">
                     <tr>
@@ -61,7 +61,7 @@
             <fieldset style="border: none" class="buttons">
                 <table>
                     <tr>
-                        <td><input type="submit" value="Subscribe" style="width:100px;margin-top:20px;"></td>
+                        <td><input type="submit" value="Subscribe" style="width:100px;margin-top:20px;" onclick="return expiredCard()"></td>
                         <td><input type="reset" value="Cancel"  style="width:100px;margin-top:20px;margin-left:15px;"></td>
                     </tr>
                 </table>

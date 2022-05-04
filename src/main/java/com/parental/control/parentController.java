@@ -73,7 +73,6 @@ public class parentController {
     public String processSub(User user){
         System.out.println("Plan:"+user.getPlan());
         userGlob.setPlan(user.getPlan());
-        System.out.println(userGlob.toString());
         return "store.html";
     }
 

@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-  if (document.getElementById('firstname').innerHTML=='')
+  if (document.getElementById('plan').innerHTML=='')
     showMessage('<strong>Success!</strong> You have signed in sucessfully!');
 
     setTimeout(function(){
