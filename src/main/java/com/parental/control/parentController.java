@@ -13,7 +13,6 @@ import java.sql.*;
 
 @Controller
 public class parentController {
-    static User userGlob;
 
     @GetMapping("/")
     public String sendForm(){
@@ -64,25 +63,24 @@ public class parentController {
     @GetMapping("/subscribe")
     public ModelAndView subscriptionPage(@ModelAttribute("user") Model model){
         ModelAndView mav=new ModelAndView("subscription.html");
-        userGlob= (User) model.getAttribute("user");
-        mav.addObject("user",userGlob);
+        mav.addObject("user",model.getAttribute("user"));
         return mav;
     }
 
     @PostMapping("/process_subscription")
     public String processSub(User user){
-        userGlob.setPlan(user.getPlan());
-        updateUser();
+        System.out.println("User: "+user.getUsername());
+        updateUser(user);
         return "store.html";
     }
 
-    private static void updateUser(){
+    private static void updateUser(User user){
         String query="UPDATE USER SET PLAN=? WHERE USERNAME=? ";
         try (Connection connection=connect()){
             connection.setAutoCommit(false);
             try (PreparedStatement pst=connection.prepareStatement(query)){
-                pst.setString(1,userGlob.getPlan());
-                pst.setString(2,userGlob.getUsername());
+                pst.setString(1,user.getPlan());
+                pst.setString(2,user.getUsername());
                 pst.execute();
             }
             connection.commit();

@@ -29,6 +29,7 @@
         <h1 style="margin-top:0px;">Subscribe to use our Services</h1>
         <form action="#" th:action="@{/process_subscription}" th:object="${user}" method="post" id="subscribeForm">
             <input class="hiddenData" id="addPlan" th:field="*{plan}"> </input>
+            <input class="hiddenData" th:field="*{username}"> </input>
             <fieldset>
                 <table class="myTable subscribeTable">
                     <tr>
