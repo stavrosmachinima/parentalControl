@@ -13,7 +13,7 @@ import java.sql.*;
 
 @Controller
 public class parentController {
-    User userGlob;
+    static User userGlob;
 
     @GetMapping("/")
     public String sendForm(){
@@ -71,9 +71,24 @@ public class parentController {
 
     @PostMapping("/process_subscription")
     public String processSub(User user){
-        System.out.println("Plan:"+user.getPlan());
         userGlob.setPlan(user.getPlan());
+        updateUser();
         return "store.html";
+    }
+
+    private static void updateUser(){
+        String query="UPDATE USER SET PLAN=? WHERE USERNAME=? ";
+        try (Connection connection=connect()){
+            connection.setAutoCommit(false);
+            try (PreparedStatement pst=connection.prepareStatement(query)){
+                pst.setString(1,userGlob.getPlan());
+                pst.setString(2,userGlob.getUsername());
+                pst.execute();
+            }
+            connection.commit();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
     private static boolean checkIfUsernameExists(User user,Connection connection){

@@ -109,18 +109,15 @@ var password2 =document.getElementById('verifyPassword').value;
 
     if (alertmsg2 != "") {
         alert(alertmsg1 + alertmsg2);
-        alertmsg2 = "";
         return false;
       }else if (password1 != password2)
       {
         showMessage("<strong>Error!</strong> Your passwords don't much!");
-        alertmsg2 = "";
         return false;
       }
        else if (!passwordStrong)
       {
         showMessage("<strong>Error!</strong> Your password is very weak!");
-        alertmsg2 = "";
         return false;
       }else
         return true;
