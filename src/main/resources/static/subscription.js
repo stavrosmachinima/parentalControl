@@ -25,7 +25,7 @@ function validate(){
     }
     // name validation
     let fullname=$('#fullname').val();
-    if (fullname===""||/^[a-z||A-Z]+$/.test(fullname)===false){
+    if (fullname===""||/^([a-zA-Z]+ [a-zA-Z]+)$/.test(fullname)===false){
         showMessage("<strong>Error!</strong> Your Fullname is of wrong type.");
         return false;
     }
