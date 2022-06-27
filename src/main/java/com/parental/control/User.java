@@ -10,6 +10,26 @@ public class User {
     private boolean checkIfEmailAlreadyExists;
     private boolean checkIfWrongUserPasswordCombination;
 
+    private String gmail;
+
+    private String app_password;
+
+    public String getGmail() {
+        return gmail;
+    }
+
+    public void setGmail(String gmail) {
+        this.gmail = gmail;
+    }
+
+    public String getApp_password() {
+        return app_password;
+    }
+
+    public void setApp_password(String app_password) {
+        this.app_password = app_password;
+    }
+
     private String plan;
 
     public String getPlan() {

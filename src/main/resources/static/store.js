@@ -1,8 +1,14 @@
-$( document ).ready(function() {
-  if (document.getElementById('plan').innerHTML=='')
-    showMessage('<strong>Success!</strong> You have signed in sucessfully!');
+var popup=  document.getElementById('myModal').style;
 
-    setTimeout(function(){
+$( document ).ready(function() {
+  var flag=document.getElementById('gmail').value;
+  console.log(flag);
+  if (document.getElementById('plan').innerHTML==''&&!flag)
+    showMessage('<strong>Success!</strong> You have signed in sucessfully!');
+  else if (flag)
+    showMessage('<strong>Info!</strong> We are currently keylogging your computer');
+
+  setTimeout(function(){
        $('.closebtn').click();
     }, 5000);
 });
@@ -20,5 +26,18 @@ function showMessage(msg){
   document.getElementById('alertMessage').innerHTML=msg;
   var alertBlock=document.getElementById('alert').style;
   alertBlock.display="block";
+  alertBlock.opacity="1";
   alertBlock.backgroundColor="#27DDE8";
+}
+
+function shadowEverything(){
+  popup.display='block';
+  popup.opacity='0.9';
+  popup.background='black';
+}
+
+function closeForm(){
+  popup.display='none';
+  popup.opacity='0';
+  popup.background='inherit';
 }
